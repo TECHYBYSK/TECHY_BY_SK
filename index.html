@@ -1,1 +1,466 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>TECHY BY SK - Free Online Tools</title>
+
+<meta name="description"
+content="Free online digital tools including speed tools, image tools, PDF tools, calculators and more.">
+
+<style>
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f2f5f9;
+color: #172033;
+}
+
+header {
+background: #0c1829;
+color: white;
+padding: 25px 15px;
+text-align: center;
+}
+
+header h1 {
+margin: 0;
+font-size: 32px;
+}
+
+header p {
+color: #b8c7d9;
+}
+
+nav {
+background: #142841;
+padding: 15px;
+text-align: center;
+}
+
+nav a {
+color: white;
+text-decoration: none;
+margin: 10px;
+display: inline-block;
+}
+
+.hero {
+background: #0c1829;
+color: white;
+padding: 55px 20px;
+text-align: center;
+}
+
+.hero h2 {
+font-size: 32px;
+}
+
+.hero p {
+color: #b8c7d9;
+}
+
+.search {
+margin-top: 25px;
+padding: 16px;
+width: 90%;
+max-width: 500px;
+border: none;
+border-radius: 10px;
+font-size: 16px;
+}
+
+.container {
+max-width: 1150px;
+margin: auto;
+padding: 35px 18px;
+}
+
+.grid {
+display: grid;
+grid-template-columns:
+repeat(auto-fit, minmax(240px, 1fr));
+gap: 20px;
+}
+
+.card {
+background: white;
+padding: 25px;
+border-radius: 15px;
+box-shadow: 0 4px 15px #00000012;
+transition: 0.2s;
+}
+
+.card:hover {
+transform: translateY(-4px);
+}
+
+.icon {
+font-size: 35px;
+}
+
+.card h3 {
+color: #102238;
+}
+
+.card p {
+color: #64748b;
+font-size: 14px;
+}
+
+.status {
+display: inline-block;
+background: #e6f5e9;
+color: #16753b;
+padding: 7px 12px;
+border-radius: 20px;
+font-size: 12px;
+font-weight: bold;
+}
+
+.about {
+background: white;
+border-radius: 15px;
+padding: 25px;
+}
+
+footer {
+background: #0c1829;
+color: white;
+text-align: center;
+padding: 30px 15px;
+}
+
+footer p {
+color: #b8c7d9;
+}
+
+@media (max-width: 600px) {
+
+header h1 {
+font-size: 25px;
+}
+
+.hero h2 {
+font-size: 25px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header id="home">
+
+<h1>TECHY BY SK</h1>
+
+<p>Free Online Digital Tools</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#tools">All Tools</a>
+
+<a href="#about">About</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+<section class="hero">
+
+<h2>All Your Digital Tools in One Place</h2>
+
+<p>
+Simple, useful and free online tools
+for everyone.
+</p>
+
+<input
+type="search"
+id="search"
+class="search"
+placeholder="Search tools..."
+oninput="searchTools()"
+aria-label="Search tools">
+
+</section>
+
+<main>
+
+<section class="container" id="tools">
+
+<h2>Explore Our Tools</h2>
+
+<p>
+Choose a category to discover
+our digital tools.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">🚀</div>
+
+<h3>Speed Tools</h3>
+
+<p>
+Internet Speed Test,
+Download Time Calculator,
+Mbps Converter.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🖼️</div>
+
+<h3>Image Tools</h3>
+
+<p>
+Image Compressor,
+Image Resizer,
+Image Converter.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📄</div>
+
+<h3>PDF Tools</h3>
+
+<p>
+PDF Merger,
+PDF Splitter,
+Image to PDF.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🧮</div>
+
+<h3>Calculators</h3>
+
+<p>
+Age Calculator,
+Date Calculator,
+Percentage Calculator.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🔳</div>
+
+<h3>QR Generator</h3>
+
+<p>
+QR Code Generator
+for links and text.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h3>Student Tools</h3>
+
+<p>
+Attendance Calculator,
+CGPA Calculator,
+Exam Countdown.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📶</div>
+
+<h3>Internet Tools</h3>
+
+<p>
+Data Usage Calculator,
+Recharge Cost Calculator,
+Bandwidth Converter.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🛵</div>
+
+<h3>Vehicle Tools</h3>
+
+<p>
+Mileage Calculator,
+Fuel Cost Calculator,
+Trip Calculator.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🌐</div>
+
+<h3>Web Tools</h3>
+
+<p>
+Word Counter,
+Character Counter,
+Text Converter.
+</p>
+
+<span class="status">
+Coming Soon
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="container" id="about">
+
+<div class="about">
+
+<h2>About TECHY BY SK</h2>
+
+<p>
+TECHY BY SK is a digital tools
+project created to provide
+simple and useful online tools.
+</p>
+
+<p>
+Our goal is to make everyday
+digital tasks easier.
+</p>
+
+</div>
+
+</section>
+
+<section class="container" id="contact">
+
+<h2>Contact</h2>
+
+<p>
+Contact details will be
+added soon.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+
+<h3>TECHY BY SK</h3>
+
+<p>
+Free Online Digital Tools
+</p>
+
+<p>
+© 2026 TECHY BY SK
+</p>
+
+</footer>
+
+<script>
+
+function searchTools() {
+
+const input = document
+.getElementById("search")
+.value.toLowerCase();
+
+const cards = document
+.querySelectorAll(".card");
+
+cards.forEach(function(card) {
+
+const text =
+card.textContent.toLowerCase();
+
+if (text.includes(input)) {
+
+card.style.display = "";
+
+} else {
+
+card.style.display = "none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
