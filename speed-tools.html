@@ -1,1 +1,548 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Speed Tools - TECHY BY SK</title>
+
+<meta name="description"
+content="Free internet speed tools, download time calculator and Mbps converter by TECHY BY SK.">
+
+<style>
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f2f5f9;
+color: #172033;
+line-height: 1.6;
+}
+
+header {
+background: #0c1829;
+color: white;
+padding: 25px 15px;
+text-align: center;
+}
+
+header h1 {
+margin: 0;
+}
+
+header p {
+color: #b8c7d9;
+}
+
+nav {
+background: #142841;
+padding: 15px;
+text-align: center;
+}
+
+nav a {
+color: white;
+text-decoration: none;
+margin: 10px;
+display: inline-block;
+}
+
+.hero {
+background: #0c1829;
+color: white;
+text-align: center;
+padding: 50px 20px;
+}
+
+.hero h2 {
+font-size: 30px;
+margin-top: 0;
+}
+
+.hero p {
+color: #b8c7d9;
+}
+
+.container {
+max-width: 1050px;
+margin: auto;
+padding: 35px 18px;
+}
+
+.card {
+background: white;
+padding: 30px;
+margin-bottom: 25px;
+border-radius: 15px;
+box-shadow: 0 4px 15px #00000012;
+}
+
+.card h2 {
+color: #102238;
+}
+
+label {
+display: block;
+font-weight: bold;
+margin-top: 18px;
+margin-bottom: 7px;
+}
+
+input, select {
+width: 100%;
+padding: 13px;
+border: 1px solid #cbd5e1;
+border-radius: 8px;
+font-size: 16px;
+background: white;
+}
+
+button {
+background: #16a34a;
+color: white;
+border: none;
+padding: 14px 22px;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 22px;
+}
+
+button:hover {
+background: #15803d;
+}
+
+.result {
+display: none;
+background: #e8f5e9;
+padding: 22px;
+margin-top: 25px;
+border-radius: 12px;
+border-left: 5px solid #16a34a;
+}
+
+.result h3 {
+color: #166534;
+margin-top: 0;
+}
+
+.result strong {
+font-size: 24px;
+color: #166534;
+}
+
+.note {
+background: #fff7ed;
+padding: 15px;
+border-radius: 10px;
+color: #92400e;
+margin-top: 15px;
+}
+
+.back {
+display: inline-block;
+text-decoration: none;
+background: #102238;
+color: white;
+padding: 12px 20px;
+border-radius: 8px;
+}
+
+footer {
+background: #0c1829;
+color: white;
+text-align: center;
+padding: 25px;
+}
+
+footer p {
+color: #b8c7d9;
+}
+
+@media(max-width:600px) {
+
+.hero h2 {
+font-size: 25px;
+}
+
+.card {
+padding: 22px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>TECHY BY SK</h1>
+
+<p>Free Online Digital Tools</p>
+
+</header>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="#download">Download Calculator</a>
+
+<a href="#converter">Speed Converter</a>
+
+</nav>
+
+<section class="hero">
+
+<h2>Internet Speed Tools</h2>
+
+<p>
+Simple and useful tools to calculate
+download times and convert internet
+speed measurements.
+</p>
+
+</section>
+
+<main class="container">
+
+<!-- INTERNET SPEED TEST -->
+
+<section class="card">
+
+<h2>🚀 Internet Speed Test</h2>
+
+<p>
+Check your internet download speed,
+upload speed and latency.
+</p>
+
+<div class="note">
+
+A real speed test requires a separate
+test server. This feature is currently
+under development.
+
+</div>
+
+</section>
+
+
+<!-- DOWNLOAD TIME CALCULATOR -->
+
+<section class="card" id="download">
+
+<h2>📥 Download Time Calculator</h2>
+
+<p>
+Find out approximately how long
+a file will take to download.
+</p>
+
+<label for="fileSize">
+Enter File Size
+</label>
+
+<input
+type="number"
+id="fileSize"
+placeholder="Example: 10"
+min="0"
+step="any">
+
+<label for="fileUnit">
+Select File Size Unit
+</label>
+
+<select id="fileUnit">
+
+<option value="1">MB</option>
+
+<option value="1000">GB</option>
+
+<option value="0.001">KB</option>
+
+<option value="1000000">TB</option>
+
+</select>
+
+<label for="internetSpeed">
+Enter Download Speed (Mbps)
+</label>
+
+<input
+type="number"
+id="internetSpeed"
+placeholder="Example: 100"
+min="0"
+step="any">
+
+<button onclick="calculateDownload()">
+Calculate Download Time
+</button>
+
+<div class="result" id="downloadResult"
+aria-live="polite">
+
+<h3>Estimated Download Time</h3>
+
+<strong id="timeOutput"></strong>
+
+<p id="downloadDetails"></p>
+
+</div>
+
+<div class="note">
+
+This is an estimate based on the speed
+you enter. Actual download time can
+vary due to network conditions and
+server performance.
+
+</div>
+
+</section>
+
+
+<!-- INTERNET SPEED CONVERTER -->
+
+<section class="card" id="converter">
+
+<h2>🔄 Internet Speed Converter</h2>
+
+<p>
+Convert Mbps into other common
+internet speed units.
+</p>
+
+<label for="mbpsInput">
+Enter Speed in Mbps
+</label>
+
+<input
+type="number"
+id="mbpsInput"
+placeholder="Example: 100"
+min="0"
+step="any">
+
+<button onclick="convertSpeed()">
+Convert Speed
+</button>
+
+<div class="result" id="speedResult"
+aria-live="polite">
+
+<h3>Conversion Results</h3>
+
+<p>
+Megabytes per second:
+</p>
+
+<strong id="mbOutput"></strong>
+
+<p>
+Kilobits per second:
+</p>
+
+<strong id="kbOutput"></strong>
+
+<p>
+Gigabits per second:
+</p>
+
+<strong id="gbOutput"></strong>
+
+</div>
+
+<div class="note">
+
+8 bits = 1 byte.
+
+Mbps means megabits per second.
+
+MB/s means megabytes per second.
+
+</div>
+
+</section>
+
+
+<a class="back" href="index.html">
+← Back to Homepage
+</a>
+
+</main>
+
+
+<footer>
+
+<h3>TECHY BY SK</h3>
+
+<p>Free Online Digital Tools</p>
+
+<p>© 2026 TECHY BY SK</p>
+
+</footer>
+
+
+<script>
+
+function formatNumber(value) {
+
+return new Intl.NumberFormat(
+"en-US",
+{ maximumFractionDigits: 4 }
+).format(value);
+
+}
+
+
+function calculateDownload() {
+
+const size = parseFloat(
+document.getElementById("fileSize").value
+);
+
+const unit = parseFloat(
+document.getElementById("fileUnit").value
+);
+
+const speed = parseFloat(
+document.getElementById("internetSpeed").value
+);
+
+if (
+!Number.isFinite(size) ||
+!Number.isFinite(speed) ||
+size <= 0 ||
+speed <= 0
+) {
+
+alert(
+"Please enter a valid file size and internet speed greater than zero."
+);
+
+return;
+
+}
+
+const sizeMB = size * unit;
+
+const seconds = (sizeMB * 8) / speed;
+
+let timeText = "";
+
+if (seconds < 60) {
+
+timeText =
+formatNumber(seconds) + " seconds";
+
+} else {
+
+const days = Math.floor(
+seconds / 86400
+);
+
+const hours = Math.floor(
+(seconds % 86400) / 3600
+);
+
+const minutes = Math.floor(
+(seconds % 3600) / 60
+);
+
+const remainingSeconds =
+seconds % 60;
+
+timeText =
+(days > 0 ? days + " days " : "") +
+(hours > 0 ? hours + " hours " : "") +
+(minutes > 0 ? minutes + " minutes " : "") +
+formatNumber(remainingSeconds) +
+" seconds";
+
+}
+
+document.getElementById(
+"timeOutput"
+).textContent = timeText;
+
+document.getElementById(
+"downloadDetails"
+).textContent =
+"Estimated at " +
+formatNumber(speed) +
+" Mbps.";
+
+document.getElementById(
+"downloadResult"
+).style.display = "block";
+
+}
+
+
+function convertSpeed() {
+
+const mbps = parseFloat(
+document.getElementById("mbpsInput").value
+);
+
+if (
+!Number.isFinite(mbps) ||
+mbps < 0
+) {
+
+alert(
+"Please enter a valid speed."
+);
+
+return;
+
+}
+
+const megabytes = mbps / 8;
+
+const kilobits = mbps * 1000;
+
+const gigabits = mbps / 1000;
+
+document.getElementById(
+"mbOutput"
+).textContent =
+formatNumber(megabytes) + " MB/s";
+
+document.getElementById(
+"kbOutput"
+).textContent =
+formatNumber(kilobits) + " Kbps";
+
+document.getElementById(
+"gbOutput"
+).textContent =
+formatNumber(gigabits) + " Gbps";
+
+document.getElementById(
+"speedResult"
+).style.display = "block";
+
+}
+
+</script>
+
+</body>
+
+</html>
