@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Free Image Compressor - TECHY BY SK</title>
+
+<style>
+
+* {
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+background: #f3f4f6;
+color: #222;
+}
+
+header {
+background: white;
+padding: 25px;
+text-align: center;
+box-shadow: 0 2px 8px #ddd;
+}
+
+header h1 {
+margin: 0;
+}
+
+header p {
+color: #666;
+}
+
+.container {
+max-width: 800px;
+margin: 35px auto;
+padding: 20px;
+}
+
+.back {
+color: #16a34a;
+text-decoration: none;
+font-weight: bold;
+}
+
+.tool-box {
+background: white;
+padding: 30px;
+border-radius: 15px;
+margin-top: 25px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+h2 {
+text-align: center;
+}
+
+.description {
+text-align: center;
+color: #666;
+line-height: 1.6;
+}
+
+.upload-area {
+border: 2px dashed #16a34a;
+border-radius: 12px;
+padding: 30px 15px;
+text-align: center;
+background: #f0fdf4;
+margin-top: 25px;
+}
+
+input[type="file"] {
+max-width: 100%;
+margin-top: 15px;
+}
+
+.preview {
+width: 100%;
+max-height: 350px;
+object-fit: contain;
+margin-top: 20px;
+border-radius: 10px;
+display: none;
+}
+
+.quality {
+margin-top: 30px;
+}
+
+.quality input {
+width: 100%;
+accent-color: #16a34a;
+}
+
+button, .download {
+display: block;
+width: 100%;
+padding: 15px;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 20px;
+text-align: center;
+text-decoration: none;
+}
+
+button {
+background: #16a34a;
+color: white;
+}
+
+button:hover {
+background: #15803d;
+}
+
+button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+.download {
+background: #2563eb;
+color: white;
+display: none;
+}
+
+.download:hover {
+background: #1d4ed8;
+}
+
+.result {
+margin-top: 25px;
+padding: 20px;
+background: #f0fdf4;
+border-radius: 10px;
+display: none;
+}
+
+.result p {
+margin: 12px 0;
+}
+
+.note {
+font-size: 13px;
+color: #777;
+margin-top: 25px;
+line-height: 1.7;
+}
+
+#status {
+text-align: center;
+margin-top: 15px;
+}
+
+footer {
+text-align: center;
+padding: 30px;
+color: #777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>TECHY BY SK</h1>
+
+<p>Free Online Digital Tools</p>
+
+</header>
+
+<div class="container">
+
+<a href="image-tools.html" class="back">
+← Back to Image Tools
+</a>
+
+<div class="tool-box">
+
+<h2>🗜️ Free Image Compressor</h2>
+
+<p class="description">
+
+Compress your images online for free.
+Reduce image file size and download
+your optimized image instantly.
+
+</p>
+
+<div class="upload-area">
+
+<h3>📷 Upload Your Image</h3>
+
+<p>Select JPG, PNG or WebP Image</p>
+
+<input
+type="file"
+id="imageInput"
+accept="image/jpeg,image/png,image/webp">
+
+</div>
+
+<img id="preview" class="preview"
+alt="Image preview">
+
+<div class="quality">
+
+<h3>Compression Quality</h3>
+
+<p>
+Quality:
+<span id="qualityValue">75</span>%
+</p>
+
+<input
+type="range"
+id="quality"
+min="30"
+max="95"
+value="75">
+
+</div>
+
+<button id="compressBtn" disabled>
+Compress Image
+</button>
+
+<p id="status" role="status"></p>
+
+<div class="result" id="result">
+
+<h3>✅ Compression Result</h3>
+
+<p>
+Original Size:
+<strong id="originalSize"></strong>
+</p>
+
+<p>
+Compressed Size:
+<strong id="compressedSize"></strong>
+</p>
+
+<p>
+Size Reduction:
+<strong id="reduction"></strong>
+</p>
+
+</div>
+
+<a id="downloadBtn" class="download">
+⬇ Download Compressed Image
+</a>
+
+<p class="note">
+
+Privacy: Images are processed locally
+in your browser.
+
+The image is not uploaded to a server.
+
+Images larger than 4096 pixels on either
+side are resized proportionally.
+
+The output format is JPEG.
+Transparent areas become white.
+
+Actual compression results depend on
+the original image and selected quality.
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 TECHY BY SK | Free Online Tools
+
+</footer>
+
+<script>
+
+const imageInput =
+document.getElementById("imageInput");
+
+const preview =
+document.getElementById("preview");
+
+const quality =
+document.getElementById("quality");
+
+const qualityValue =
+document.getElementById("qualityValue");
+
+const compressBtn =
+document.getElementById("compressBtn");
+
+const downloadBtn =
+document.getElementById("downloadBtn");
+
+const result =
+document.getElementById("result");
+
+const statusText =
+document.getElementById("status");
+
+let selectedFile = null;
+
+let previewURL = null;
+
+let downloadURL = null;
+
+let taskVersion = 0;
+
+
+// FORMAT FILE SIZE
+
+function formatSize(bytes) {
+
+if (bytes < 1024) {
+return bytes + " B";
+}
+
+if (bytes < 1024 * 1024) {
+return (bytes / 1024).toFixed(2) + " KB";
+}
+
+return (
+bytes / (1024 * 1024)
+).toFixed(2) + " MB";
+
+}
+
+
+// RESET OLD RESULT
+
+function resetResult() {
+
+result.style.display = "none";
+
+downloadBtn.style.display = "none";
+
+downloadBtn.removeAttribute("href");
+
+statusText.textContent = "";
+
+if (downloadURL) {
+
+URL.revokeObjectURL(downloadURL);
+
+downloadURL = null;
+
+}
+
+}
+
+
+// QUALITY SLIDER
+
+quality.addEventListener("input", () => {
+
+qualityValue.textContent = quality.value;
+
+resetResult();
+
+});
+
+
+// IMAGE UPLOAD
+
+imageInput.addEventListener("change", () => {
+
+taskVersion++;
+
+resetResult();
+
+selectedFile = null;
+
+compressBtn.disabled = true;
+
+preview.style.display = "none";
+
+preview.removeAttribute("src");
+
+if (previewURL) {
+
+URL.revokeObjectURL(previewURL);
+
+previewURL = null;
+
+}
+
+const file = imageInput.files[0];
+
+if (!file) return;
+
+const allowedTypes = [
+"image/jpeg",
+"image/png",
+"image/webp"
+];
+
+if (!allowedTypes.includes(file.type)) {
+
+statusText.textContent =
+"Please select JPG, PNG or WebP image.";
+
+imageInput.value = "";
+
+return;
+
+}
+
+selectedFile = file;
+
+previewURL =
+URL.createObjectURL(file);
+
+preview.src = previewURL;
+
+preview.style.display = "block";
+
+compressBtn.disabled = false;
+
+});
+
+
+// COMPRESS IMAGE
+
+compressBtn.addEventListener("click", () => {
+
+if (!selectedFile) {
+
+statusText.textContent =
+"Please upload an image first.";
+
+return;
+
+}
+
+resetResult();
+
+compressBtn.disabled = true;
+
+statusText.textContent =
+"Compressing your image...";
+
+const currentTask = ++taskVersion;
+
+const file = selectedFile;
+
+const image = new Image();
+
+const sourceURL =
+URL.createObjectURL(file);
+
+image.onload = () => {
+
+URL.revokeObjectURL(sourceURL);
+
+if (currentTask !== taskVersion) {
+return;
+}
+
+try {
+
+const canvas =
+document.createElement("canvas");
+
+const ctx =
+canvas.getContext("2d");
+
+if (!ctx) {
+throw new Error("Canvas not supported");
+}
+
+let width = image.naturalWidth;
+
+let height = image.naturalHeight;
+
+const maxDimension = 4096;
+
+const scale = Math.min(
+1,
+maxDimension / Math.max(width, height)
+);
+
+width = Math.max(
+1,
+Math.round(width * scale)
+);
+
+height = Math.max(
+1,
+Math.round(height * scale)
+);
+
+canvas.width = width;
+
+canvas.height = height;
+
+
+// WHITE BACKGROUND FOR JPEG
+
+ctx.fillStyle = "#FFFFFF";
+
+ctx.fillRect(
+0,
+0,
+width,
+height
+);
+
+
+// DRAW IMAGE
+
+ctx.drawImage(
+image,
+0,
+0,
+width,
+height
+);
+
+
+// COMPRESSION QUALITY
+
+const compressionQuality =
+Number(quality.value) / 100;
+
+
+// CONVERT TO JPEG BLOB
+
+canvas.toBlob((blob) => {
+
+if (currentTask !== taskVersion) {
+return;
+}
+
+compressBtn.disabled = false;
+
+if (!blob) {
+
+statusText.textContent =
+"Compression failed. Try another image.";
+
+return;
+
+}
+
+downloadURL =
+URL.createObjectURL(blob);
+
+
+// DISPLAY FILE SIZES
+
+document.getElementById(
+"originalSize"
+).textContent =
+formatSize(file.size);
+
+document.getElementById(
+"compressedSize"
+).textContent =
+formatSize(blob.size);
+
+
+// CALCULATE REDUCTION
+
+const percentage =
+(
+(1 - blob.size / file.size) * 100
+).toFixed(1);
+
+document.getElementById(
+"reduction"
+).textContent =
+percentage + "%";
+
+
+// DOWNLOAD BUTTON
+
+downloadBtn.href = downloadURL;
+
+downloadBtn.download =
+"TECHY_BY_SK_compressed.jpg";
+
+downloadBtn.style.display =
+"block";
+
+result.style.display =
+"block";
+
+if (blob.size >= file.size) {
+
+statusText.textContent =
+"Done! The output is not smaller. " +
+"Try a lower quality setting.";
+
+} else {
+
+statusText.textContent =
+"Image compressed successfully!";
+
+}
+
+},
+"image/jpeg",
+compressionQuality
+);
+
+} catch (error) {
+
+compressBtn.disabled = false;
+
+statusText.textContent =
+"Unable to process this image. " +
+"Try a smaller image.";
+
+}
+
+};
+
+
+// IMAGE LOAD ERROR
+
+image.onerror = () => {
+
+URL.revokeObjectURL(sourceURL);
+
+if (currentTask !== taskVersion) {
+return;
+}
+
+compressBtn.disabled = false;
+
+statusText.textContent =
+"Could not open this image.";
+
+};
+
+image.src = sourceURL;
+
+});
+
+</script>
+
+</body>
+</html>
