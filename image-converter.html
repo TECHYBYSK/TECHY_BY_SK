@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Convert JPG, PNG and WebP images online for free with TECHY BY SK.">
+
+<title>Free Image Converter - TECHY BY SK</title>
+
+<style>
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f3f4f6;
+color: #222;
+}
+
+header {
+background: white;
+padding: 25px;
+text-align: center;
+box-shadow: 0 2px 8px #ddd;
+}
+
+header h1 {
+margin: 0;
+}
+
+header p {
+color: #666;
+}
+
+.container {
+max-width: 850px;
+margin: 35px auto;
+padding: 20px;
+}
+
+.back {
+color: #16a34a;
+text-decoration: none;
+font-weight: bold;
+}
+
+.tool-box {
+background: white;
+padding: 30px;
+border-radius: 15px;
+margin-top: 25px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+h2 {
+text-align: center;
+}
+
+.description {
+text-align: center;
+color: #666;
+line-height: 1.7;
+}
+
+.upload-area {
+border: 2px dashed #16a34a;
+border-radius: 12px;
+padding: 30px 15px;
+text-align: center;
+background: #f0fdf4;
+margin-top: 25px;
+}
+
+input[type="file"] {
+max-width: 100%;
+margin-top: 15px;
+}
+
+.preview {
+width: 100%;
+max-height: 350px;
+object-fit: contain;
+margin-top: 20px;
+border-radius: 10px;
+display: none;
+}
+
+.settings {
+margin-top: 30px;
+}
+
+select {
+width: 100%;
+padding: 15px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 16px;
+background: white;
+}
+
+.quality {
+margin-top: 25px;
+}
+
+.quality input {
+width: 100%;
+accent-color: #16a34a;
+}
+
+button, .download {
+display: block;
+width: 100%;
+padding: 15px;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 25px;
+text-align: center;
+text-decoration: none;
+}
+
+button {
+background: #16a34a;
+color: white;
+}
+
+button:hover {
+background: #15803d;
+}
+
+button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+.download {
+background: #2563eb;
+color: white;
+display: none;
+}
+
+.download:hover {
+background: #1d4ed8;
+}
+
+.result {
+background: #f0fdf4;
+padding: 20px;
+border-radius: 10px;
+margin-top: 25px;
+display: none;
+}
+
+.result p {
+line-height: 1.8;
+overflow-wrap: anywhere;
+}
+
+#status {
+text-align: center;
+margin-top: 15px;
+line-height: 1.6;
+}
+
+.note {
+font-size: 13px;
+color: #777;
+margin-top: 25px;
+line-height: 1.7;
+}
+
+footer {
+text-align: center;
+padding: 30px;
+color: #777;
+}
+
+@media(max-width: 500px) {
+
+.tool-box {
+padding: 20px;
+}
+
+.container {
+padding: 12px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>TECHY BY SK</h1>
+
+<p>Free Online Digital Tools</p>
+
+</header>
+
+<div class="container">
+
+<a href="image-tools.html" class="back">
+← Back to Image Tools
+</a>
+
+<div class="tool-box">
+
+<h2>🔄 Free Image Converter</h2>
+
+<p class="description">
+
+Convert your images between JPG, PNG
+and WebP formats online for free.
+
+Upload your image, select the output
+format and download instantly.
+
+</p>
+
+
+<!-- IMAGE UPLOAD -->
+
+<div class="upload-area">
+
+<h3>📷 Upload Your Image</h3>
+
+<p>Select JPG, PNG or WebP Image</p>
+
+<input
+type="file"
+id="imageInput"
+accept="image/jpeg,image/png,image/webp">
+
+</div>
+
+
+<!-- IMAGE PREVIEW -->
+
+<img
+id="preview"
+class="preview"
+alt="Uploaded image preview">
+
+
+<!-- CONVERSION SETTINGS -->
+
+<div class="settings">
+
+<h3>Conversion Settings</h3>
+
+<p id="imageInfo">
+Upload an image to view its details.
+</p>
+
+<label for="format">
+<strong>Select Output Format</strong>
+</label>
+
+<br><br>
+
+<select id="format">
+
+<option value="image/jpeg">
+JPG - JPEG Image
+</option>
+
+<option value="image/png">
+PNG - Portable Network Graphics
+</option>
+
+<option value="image/webp">
+WebP - Modern Image Format
+</option>
+
+</select>
+
+
+<!-- QUALITY SETTINGS -->
+
+<div class="quality" id="qualityBox">
+
+<h3>Output Quality</h3>
+
+<p>
+
+Quality:
+
+<strong id="qualityValue">85</strong>%
+
+</p>
+
+<input
+type="range"
+id="quality"
+min="30"
+max="100"
+value="85">
+
+<p class="note">
+
+Higher quality may result in
+a larger file size.
+
+</p>
+
+</div>
+
+
+<!-- CONVERT BUTTON -->
+
+<button id="convertBtn" disabled>
+Convert Image
+</button>
+
+<p id="status" role="status"></p>
+
+
+<!-- RESULT -->
+
+<div class="result" id="result">
+
+<h3>✅ Conversion Complete!</h3>
+
+<p>
+Original Format:
+<strong id="originalFormat"></strong>
+</p>
+
+<p>
+Converted Format:
+<strong id="convertedFormat"></strong>
+</p>
+
+<p>
+Image Dimensions:
+<strong id="dimensions"></strong>
+</p>
+
+<p>
+Original File Size:
+<strong id="originalSize"></strong>
+</p>
+
+<p>
+Converted File Size:
+<strong id="convertedSize"></strong>
+</p>
+
+</div>
+
+
+<!-- DOWNLOAD BUTTON -->
+
+<a id="downloadBtn" class="download">
+
+⬇ Download Converted Image
+
+</a>
+
+
+<!-- PRIVACY NOTE -->
+
+<p class="note">
+
+Privacy: Images are processed locally
+in your browser.
+
+Your photos are not uploaded to a server.
+
+Supported formats: JPG, PNG and WebP.
+
+Maximum image dimensions:
+6000 × 6000 pixels.
+
+Maximum image area:
+24 million pixels.
+
+JPG does not support transparency.
+Transparent areas become white
+when converting to JPG.
+
+Quality settings apply to JPG and WebP.
+PNG conversion does not use the
+quality slider.
+
+Converting an image may increase
+or decrease its file size.
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 TECHY BY SK | Free Online Tools
+
+</footer>
+
+
+<script>
+
+// ELEMENTS
+
+const imageInput =
+document.getElementById("imageInput");
+
+const preview =
+document.getElementById("preview");
+
+const format =
+document.getElementById("format");
+
+const quality =
+document.getElementById("quality");
+
+const qualityValue =
+document.getElementById("qualityValue");
+
+const qualityBox =
+document.getElementById("qualityBox");
+
+const convertBtn =
+document.getElementById("convertBtn");
+
+const downloadBtn =
+document.getElementById("downloadBtn");
+
+const result =
+document.getElementById("result");
+
+const statusText =
+document.getElementById("status");
+
+const imageInfo =
+document.getElementById("imageInfo");
+
+
+// VARIABLES
+
+let selectedFile = null;
+
+let loadedImage = null;
+
+let previewURL = null;
+
+let downloadURL = null;
+
+let taskVersion = 0;
+
+
+// FILE SIZE FORMAT
+
+function formatSize(bytes) {
+
+if (bytes < 1024) {
+
+return bytes + " B";
+
+}
+
+if (bytes < 1024 * 1024) {
+
+return (
+bytes / 1024
+).toFixed(2) + " KB";
+
+}
+
+return (
+bytes / (1024 * 1024)
+).toFixed(2) + " MB";
+
+}
+
+
+// FORMAT NAMES
+
+function getFormatName(type) {
+
+if (type === "image/jpeg") {
+
+return "JPG";
+
+}
+
+if (type === "image/png") {
+
+return "PNG";
+
+}
+
+if (type === "image/webp") {
+
+return "WebP";
+
+}
+
+return "Unknown";
+
+}
+
+
+// RESET OLD RESULT
+
+function resetResult() {
+
+result.style.display = "none";
+
+downloadBtn.style.display = "none";
+
+downloadBtn.removeAttribute("href");
+
+statusText.textContent = "";
+
+if (downloadURL) {
+
+URL.revokeObjectURL(downloadURL);
+
+downloadURL = null;
+
+}
+
+}
+
+
+// OUTPUT FORMAT CHANGE
+
+format.addEventListener("change", () => {
+
+taskVersion++;
+
+resetResult();
+
+convertBtn.disabled = !loadedImage;
+
+if (format.value === "image/png") {
+
+qualityBox.style.display = "none";
+
+} else {
+
+qualityBox.style.display = "block";
+
+}
+
+});
+
+
+// QUALITY SLIDER
+
+quality.addEventListener("input", () => {
+
+taskVersion++;
+
+qualityValue.textContent = quality.value;
+
+resetResult();
+
+convertBtn.disabled = !loadedImage;
+
+});
+
+
+// IMAGE UPLOAD
+
+imageInput.addEventListener("change", () => {
+
+taskVersion++;
+
+resetResult();
+
+selectedFile = null;
+
+loadedImage = null;
+
+convertBtn.disabled = true;
+
+preview.style.display = "none";
+
+preview.removeAttribute("src");
+
+imageInfo.textContent =
+"Upload an image to view its details.";
+
+if (previewURL) {
+
+URL.revokeObjectURL(previewURL);
+
+previewURL = null;
+
+}
+
+const file = imageInput.files[0];
+
+if (!file) return;
+
+
+// VALIDATE FILE TYPE
+
+const allowedTypes = [
+
+"image/jpeg",
+
+"image/png",
+
+"image/webp"
+
+];
+
+if (!allowedTypes.includes(file.type)) {
+
+statusText.textContent =
+"Please select a JPG, PNG or WebP image.";
+
+imageInput.value = "";
+
+return;
+
+}
+
+const currentTask = taskVersion;
+
+const image = new Image();
+
+const sourceURL =
+URL.createObjectURL(file);
+
+
+// LOAD IMAGE
+
+image.onload = () => {
+
+if (currentTask !== taskVersion) {
+
+URL.revokeObjectURL(sourceURL);
+
+return;
+
+}
+
+const width = image.naturalWidth;
+
+const height = image.naturalHeight;
+
+
+// DIMENSION VALIDATION
+
+if (
+
+width < 1 ||
+
+height < 1 ||
+
+width > 6000 ||
+
+height > 6000 ||
+
+width * height > 24000000
+
+) {
+
+URL.revokeObjectURL(sourceURL);
+
+statusText.textContent =
+"Image is too large. Maximum " +
+"6000 px per side and " +
+"24 million total pixels.";
+
+return;
+
+}
+
+
+// SAVE IMAGE
+
+selectedFile = file;
+
+loadedImage = image;
+
+previewURL = sourceURL;
+
+
+// SHOW IMAGE
+
+preview.src = previewURL;
+
+preview.style.display = "block";
+
+
+// SHOW FILE DETAILS
+
+imageInfo.textContent =
+
+"Original Format: " +
+
+getFormatName(file.type) +
+
+" | Dimensions: " +
+
+width + " × " + height +
+
+" px | Size: " +
+
+formatSize(file.size);
+
+
+// DEFAULT OUTPUT FORMAT
+
+if (file.type === "image/jpeg") {
+
+format.value = "image/png";
+
+} else {
+
+format.value = "image/jpeg";
+
+}
+
+qualityBox.style.display =
+format.value === "image/png"
+? "none"
+: "block";
+
+convertBtn.disabled = false;
+
+statusText.textContent =
+"Image loaded successfully!";
+
+};
+
+
+// IMAGE ERROR
+
+image.onerror = () => {
+
+URL.revokeObjectURL(sourceURL);
+
+if (currentTask !== taskVersion) {
+return;
+}
+
+statusText.textContent =
+"Could not open this image.";
+
+};
+
+image.src = sourceURL;
+
+});
+
+
+// CONVERT IMAGE
+
+convertBtn.addEventListener("click", () => {
+
+if (!selectedFile || !loadedImage) {
+
+statusText.textContent =
+"Please upload an image first.";
+
+return;
+
+}
+
+resetResult();
+
+convertBtn.disabled = true;
+
+statusText.textContent =
+"Converting your image...";
+
+const currentTask = ++taskVersion;
+
+const file = selectedFile;
+
+const image = loadedImage;
+
+const outputFormat = format.value;
+
+const outputQuality =
+Number(quality.value) / 100;
+
+
+try {
+
+
+// CREATE CANVAS
+
+const canvas =
+document.createElement("canvas");
+
+const ctx =
+canvas.getContext("2d");
+
+if (!ctx) {
+
+throw new Error(
+"Canvas is not supported."
+);
+
+}
+
+
+// ORIGINAL DIMENSIONS
+
+canvas.width =
+image.naturalWidth;
+
+canvas.height =
+image.naturalHeight;
+
+
+// WHITE BACKGROUND FOR JPG
+
+if (outputFormat === "image/jpeg") {
+
+ctx.fillStyle = "#FFFFFF";
+
+ctx.fillRect(
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+}
+
+
+// DRAW ORIGINAL IMAGE
+
+ctx.drawImage(
+
+image,
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+// CONVERT CANVAS TO IMAGE
+
+canvas.toBlob((blob) => {
+
+if (currentTask !== taskVersion) {
+return;
+}
+
+convertBtn.disabled = false;
+
+if (!blob) {
+
+statusText.textContent =
+"Conversion failed. Try another image.";
+
+return;
+
+}
+
+
+// CHECK OUTPUT FORMAT
+
+if (blob.type !== outputFormat) {
+
+statusText.textContent =
+"Selected format is not supported " +
+"by this browser.";
+
+return;
+
+}
+
+
+// CREATE DOWNLOAD URL
+
+downloadURL =
+URL.createObjectURL(blob);
+
+
+// FILE EXTENSION
+
+let extension = "jpg";
+
+if (outputFormat === "image/png") {
+
+extension = "png";
+
+}
+
+if (outputFormat === "image/webp") {
+
+extension = "webp";
+
+}
+
+
+// DOWNLOAD FILE NAME
+
+const baseName =
+file.name.replace(/\.[^.]+$/, "");
+
+downloadBtn.href =
+downloadURL;
+
+downloadBtn.download =
+
+baseName +
+
+"_TECHY_BY_SK." +
+
+extension;
+
+
+// DISPLAY RESULT
+
+document.getElementById(
+"originalFormat"
+).textContent =
+
+getFormatName(file.type);
+
+
+document.getElementById(
+"convertedFormat"
+).textContent =
+
+getFormatName(outputFormat);
+
+
+document.getElementById(
+"dimensions"
+).textContent =
+
+canvas.width +
+
+" × " +
+
+canvas.height +
+
+" px";
+
+
+document.getElementById(
+"originalSize"
+).textContent =
+
+formatSize(file.size);
+
+
+document.getElementById(
+"convertedSize"
+).textContent =
+
+formatSize(blob.size);
+
+
+// SHOW RESULT
+
+result.style.display = "block";
+
+downloadBtn.style.display = "block";
+
+statusText.textContent =
+"Image converted successfully!";
+
+
+},
+
+outputFormat,
+
+outputQuality
+
+);
+
+
+} catch (error) {
+
+convertBtn.disabled = false;
+
+statusText.textContent =
+"Unable to convert this image. " +
+"Please try another image.";
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
